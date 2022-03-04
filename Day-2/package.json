@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "name": "day-2-event-loop-and-http",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
