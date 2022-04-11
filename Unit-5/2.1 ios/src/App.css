@@ -1,0 +1,15 @@
+.squareList{
+  list-style: square;
+}
+
+.circleList{
+  list-style: disc;
+}
+
+.darkList{
+  list-style: circle;
+}
+
+.App{
+  margin-left:500px;
+}
