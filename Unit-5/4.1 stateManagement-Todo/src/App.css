@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+}
+
+#btn{
+  width: 45px;
+  height: 45px;
+  font-size: 30px;
+  border-radius: 5px;
+  background-color: white;
+  border: 0;
+}
+
+.inputs{
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 500px;
+}
+
+.inputbox{
+  width: 250px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 5px;
+  margin-right: 10px;
+  text-align: center;
+  border: 1px solid whitesmoke;
+}
