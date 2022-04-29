@@ -8,7 +8,7 @@ export const TodoDetails = () => {
 
   let todo = useSelector((store) => {
     return store.todos.filter((e) => {
-      return e.id === id;
+      return e.id.toString() === id;
     });
  });
 
@@ -24,14 +24,18 @@ export const TodoDetails = () => {
 
   return (
     <div>
+	 {todo.length !== 1 ? (
+        <h1>Todo Deleted</h1>
+      ) : (
       <div className="detailCard1">
-        <input type="checkbox" onChange={() => handleToggle(id)}></input>
+        <input type="checkbox" onChange={() => handleToggle(todo[0].id)}></input>
         <div>
-          <h2>Todo: {todo.title}</h2>
-          <h2>Status: {todo.status ? "Complete" : "Not complete"}</h2>
+          <h2>Todo: {todo[0].title}</h2>
+          <h2>Status: {todo[0].status ? "Complete" : "Not complete"}</h2>
         </div>
-        <button onClick={() => handleDelete(id)}>Delete</button>
+        <button onClick={() => handleDelete(todo[0].id)}>Delete</button>
       </div>
+	)}
     </div>
   );
 };
