@@ -6,9 +6,10 @@ import { Orders } from "./components/Orders";
 import { ProtectedRoute } from "./components/ProtextedRoute";
 import { useSelector } from 'react-redux'
 import { Link, Route, Routes} from 'react-router-dom'
+import { store } from "./Redux/store";
 
 function App() {
-  const {isAuth} = useSelector(state => state.isAuth);
+  const  isAuth  = useSelector(store => store.isAuth);
   return (
     <div className="App">
       <div>
