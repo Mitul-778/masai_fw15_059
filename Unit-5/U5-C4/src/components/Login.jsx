@@ -16,7 +16,7 @@ const handleAuth=(e)=>{
   axios.get("http://localhost:8080/users").then((data)=>{
     data.data.map((e)=>{
       if(e.username === name && e.pass===pass){
-        dispatch(login({isAuth:true}));
+        dispatch(login(e));
         if(e.role==="admin"){
          return navigate("/orders"); 
         }else{

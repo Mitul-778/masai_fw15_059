@@ -1,4 +1,24 @@
+import axios from "axios";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux"; 
+import { store } from "../Redux/store";
+
 export const NewOrder = () => {
+  const dispatch = useDispatch()
+  const user = useSelector((store) =>store.users)
+  const newdata = useSelector((store)=> store.neworder)
+  console.log('user:', user)
+
+  useEffect(()=>{
+    getData();
+  },[])
+
+  const getData= async()=>{
+     axios.get("http://localhost:8080/orders",{params:{
+      owner_name: user.username
+    }}).then((res)=>dispatch(newdata(res.data)))
+  }
   // Get data of only this user. store it in redux
   // GET /orders?owner_name=john will give you all order of user john
   //  on submit click create a new order, new order has status `Not Accepted`
