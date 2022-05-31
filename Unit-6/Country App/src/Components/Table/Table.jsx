@@ -14,9 +14,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCity,getCountry,Delete } from '../../Redux/Action'
+import { getCity,getCountry,Delete, sortbyasc, sortbydsc } from '../../Redux/Action'
 import { useEffect, useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { useNavigate } from 'react-router-dom';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -41,9 +43,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export function CustomizedTables() {
-  const {city,country} = useSelector((store)=>store)
+  const {city,country,isLoading} = useSelector((store)=>store)
   const [cont,setCont] = useState('')
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   useEffect(()=>{
     dispatch(getCity())
     dispatch(getCountry())
@@ -54,7 +57,16 @@ export function CustomizedTables() {
     dispatch(getCity())
   }
 
-  return (
+  const handleSort= (by) =>{
+    if(by==='asc'){
+      dispatch(sortbyasc())
+    }else{
+      dispatch(sortbydsc())
+    }
+  }
+  
+
+  return isLoading ? <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif?20170503175831" alt="" /> : (
       <>
     <Box sx={{ marginTop:'20px', display: 'flex', alignItems:'center', justifyContent:'space-around'}}>
     <FormControl sx={{ m: 1, minWidth: 180 }} size="small">
@@ -72,8 +84,8 @@ export function CustomizedTables() {
         })}
       </Select>
     </FormControl>
-    <Button style={{height:'40px'}} variant="outlined">Sort Asc...</Button>
-    <Button style={{height:'40px'}} variant="outlined">Sort Dsc...</Button>
+    <Button onClick={()=>handleSort('asc')} style={{height:'40px'}} variant="outlined">Sort Asc...</Button>
+    <Button onClick={()=>handleSort('dsc')} style={{height:'40px'}} variant="outlined">Sort Dsc...</Button>
     </Box>
     <TableContainer style={{marginTop:"50px"}} component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple-table">
@@ -96,7 +108,9 @@ export function CustomizedTables() {
               <StyledTableCell align="center">{e.country}</StyledTableCell>
               <StyledTableCell align="center">{e.city}</StyledTableCell>
               <StyledTableCell align="center">{e.population}</StyledTableCell>
-              <StyledTableCell align="center" >Edit</StyledTableCell>
+              <StyledTableCell align="center" ><Button onClick={()=>navigate(`/city/${e.id}`)}  variant="outlined" startIcon={<EditOutlinedIcon />}>
+  Edit
+</Button></StyledTableCell>
               <StyledTableCell align="center"><Button onClick={()=>handleDelete(e)}  variant="outlined" startIcon={<DeleteIcon />}>
   Delete
 </Button></StyledTableCell>
