@@ -1,11 +1,12 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from "./Action";
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, USER } from "./Action";
 
 const init = {
     error : false,
     loading : false,
     isAuth : false,
     token : '',
-    username : ''
+    username : '',
+    userDetails:[]
 }
 
 export const authReducer = (store=init, {type,payload}) =>{
@@ -17,11 +18,11 @@ export const authReducer = (store=init, {type,payload}) =>{
             error : false,
             loading: false,
             isAuth : true,
-            token: payload.token,
-            username : payload.username
+            token: payload.res.token,
+            username : payload.username,
             };
         case LOGIN_FAILURE :
-            return {...store, error : true}
+            return {...store, error : true,isAuth:false}
         case LOGOUT : 
             return {...store,
             error: false,
@@ -30,6 +31,8 @@ export const authReducer = (store=init, {type,payload}) =>{
             token:'',
             username:''
             }
+        case USER :
+            return {...store, userDetails:payload}
         default :
             return store
     }

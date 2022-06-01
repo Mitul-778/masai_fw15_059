@@ -1,0 +1,57 @@
+.Home {
+  display: flex;
+}
+
+.sideBar {
+  width: 100%;
+  background-color: aqua;
+}
+
+.toDo {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.inProgress {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.done {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.taskIndiv {
+  margin: 5%;
+  border: 2px solid red;
+  padding: 1%;
+}
+
+.taskIndivFlex {
+  display: flex;
+}
+
+.headingNae1 {
+  color: #eeeeee;
+  margin-top: 0%;
+  padding: 4%;
+  text-align: center;
+  background-color: #ff5f00;
+}
+
+.headingNae2 {
+  color: #eeeeee;
+  margin-top: 0%;
+  padding: 4%;
+  text-align: center;
+  background-color: #b20600;
+}
+
+.headingNae3 {
+  color: #eeeeee;
+  margin-top: 0%;
+  padding: 4%;
+  text-align: center;
+  background-color: #00092c;
+}

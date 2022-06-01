@@ -1,45 +1,79 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import "./App.css";
+import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import { Home } from "./Components/Home";
+import { Login } from "./Components/Login";
+import TodosCreate from "../src/Components/createTodo";
+import { useSelector } from "react-redux";
+import TodosEdit from "./Components/EditTodo";
+
+const PrivateRoute = ({ isAuthenticate, children }) => {
+  return isAuthenticate ? children : <Navigate to={"/login"} />;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const navigate = useNavigate();
+  const isAuthenticate = useSelector((store) => store.user.isAuth);
+  console.log("isAuthenticate:", isAuthenticate);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+      <h1>Redux hooks</h1>
+      <div>
+        <button
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          Login
+        </button>
+        <button
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Home
+        </button>
+        <button
+          onClick={() => {
+            navigate("/todos-create");
+          }}
+        >
+          Tod-Dos
+        </button>
+      </div>
+
+      <Routes>
+        <Route path="/login" element={<Login />}></Route>
+
+        <Route
+          path="/"
+          element={
+            <PrivateRoute isAuthenticate={isAuthenticate}>
+              <Home />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/todos-create"
+          element={
+            <PrivateRoute isAuthenticate={isAuthenticate}>
+              <TodosCreate />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/todos/:id/edit"
+          element={
+            <PrivateRoute isAuthenticate={isAuthenticate}>
+              <TodosEdit />
+            </PrivateRoute>
+          }
+        ></Route>
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
