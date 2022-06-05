@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Neighbour = require('../controller/neighbourhood.controller')
 
-router.post('/', async(req,res)=>{
+router.post('', async(req,res)=>{
     try {
         const neighbour = await Neighbour.create(req.body);
         return res.status(201).send(neighbour)
@@ -11,7 +11,7 @@ router.post('/', async(req,res)=>{
     }
 })
 
-router.get('/', async(req,res)=>{
+router.get('', async(req,res)=>{
     try {
         const neighbours = await Neighbour.find({
             location: {
