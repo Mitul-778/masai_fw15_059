@@ -1,0 +1,61 @@
+* {
+  margin: 2px;
+  padding: 2px;
+}
+
+.greyText {
+  display: flex;
+  color: grey;
+  font-weight: 600;
+  gap: 15px;
+}
+
+.card {
+  width: 400px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.upperDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn {
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  font-weight: bolder;
+  border-radius: 50%;
+  border: none;
+  background-color:white;
+  cursor: pointer;
+}
+
+.timeDiv {
+  display: flex;
+  gap: 10px;
+  color: grey;
+}
+
+.mainText {
+  font-size: 17px;
+  font-weight: bold;
+  color: black;
+}
+
+.btnDiv {
+  min-width: 50px;
+}
+
+.endCard {
+  justify-content: left;
+}
+
+.hideBtn {
+  visibility: hidden;
+}
