@@ -1,0 +1,33 @@
+.App{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(2,1fr);
+  gap: 20px;
+}
+
+img{
+  width: 600px;
+  height: 400px;
+}
+
+#card{
+  text-align: center;
+}
+
+span{
+  display: flex;
+  justify-content: space-around;
+}
+#filter{
+  width: 90%;;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-around;
+}
+#btns{
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px;
+}
