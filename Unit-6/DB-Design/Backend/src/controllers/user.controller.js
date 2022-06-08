@@ -65,7 +65,7 @@ router.patch('/:id/addresses/create', async(req,res)=>{
 // edit address of a user 
 router.patch('/:id/addresses/:idx/edit', async(req,res)=>{
     try {
-        const user = await User.findByIdAndUpdate(req.params.id,{$set: {[`addresses.${req.params.idx}.value`]: req.body}}, {new:true})
+        const user = await User.findOneAndUpdate({_id:req.params.id},{ $set: {[`addresses.${req.params.idx}`]: req.body}}, {new:true})
         return res.status(201).send(user)
     } catch (error) {
         return res.status(500).send(error)

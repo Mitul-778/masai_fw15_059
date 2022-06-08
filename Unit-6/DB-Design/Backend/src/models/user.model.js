@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
         line_1: { type: String, required: true },
         line_2: { type: String, required: false },
         city: { type: String, required: true },
-        pincode: { type: Number, required: true },
+        pincode: { type: String, required: true },
         country: { type: String, required: true }
     }]
 }) 
