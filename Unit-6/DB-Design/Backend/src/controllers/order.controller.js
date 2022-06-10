@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('', async(req,res)=>{
     try {
-        const order = await Order.find().lean().exec();
+        const order = await Order.find().populate({path:"userId"}).populate({path:"productIds"}).lean().exec();
         return res.status(200).send(order)
     } catch (error) {
         return res.status(500).send(error)
@@ -22,7 +22,7 @@ router.post('/create', async(req,res)=>{
 
 router.get('/:id', async(req,res)=>{
     try {
-        const order = await Order.findById(req.params.id).lean().exec();
+        const order = await Order.findById(req.params.id).populate({path:"userId"}).populate({path:"productIds"}).lean().exec();
         return res.status(200).send(order);
     } catch (error) {
         return res.status(500).send(error);
@@ -46,3 +46,5 @@ router.patch('/:id/add/:product', async(req,res)=>{
         return res.status(500).send(error);
     }
 })
+
+module.exports = router

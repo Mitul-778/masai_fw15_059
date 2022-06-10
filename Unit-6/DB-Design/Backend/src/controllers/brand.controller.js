@@ -23,9 +23,9 @@ router.post('/create', async(req,res)=>{
 })
 
 // get single brand
-router.get('/:id', async(req,res)=>{
+router.get('/:brand', async(req,res)=>{
     try {
-        const brand = await Brand.findById(req.params.id).populate({ path:"productId" , populate:{ path:"categoryId" , populate:[{path:"parentId",select:{"name":1}},{path:"anscester",select:{"name":1}}]} }).lean().exec();
+        const brand = await Brand.find({name:req.params.brand}).populate({ path:"productId" , populate:{ path:"categoryId" , populate:[{path:"parentId",select:{"name":1}},{path:"anscester",select:{"name":1}}]} }).lean().exec();
         return res.status(200).send(brand);
     } catch (error) {
         return res.status(500).send(error);
