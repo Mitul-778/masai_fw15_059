@@ -6,9 +6,9 @@ const router = express.Router();
 router.get('', async(req,res)=>{
     try {
         const brand = await Brand.find().populate({ path:"productId" , populate:{ path:"categoryId" , populate:[{path:"parentId",select:{"name":1}},{path:"anscester",select:{"name":1}}]} }).lean().exec();
-        return res.status(200).send(brand);
+        return res.status(200).send({brand});
     } catch (error) {
-        return res.status(500).send(error);
+        return res.status(500).send({error});
     }
 })
 
@@ -16,9 +16,9 @@ router.get('', async(req,res)=>{
 router.post('/create', async(req,res)=>{
     try {
         const brand = await Brand.create(req.body);
-        return res.status(201).send(brand);
+        return res.status(201).send({brand});
     } catch (error) {
-        return res.status(500).send(error);
+        return res.status(500).send({error});
     }
 })
 
@@ -26,9 +26,9 @@ router.post('/create', async(req,res)=>{
 router.get('/:brand', async(req,res)=>{
     try {
         const brand = await Brand.find({name:req.params.brand}).populate({ path:"productId" , populate:{ path:"categoryId" , populate:[{path:"parentId",select:{"name":1}},{path:"anscester",select:{"name":1}}]} }).lean().exec();
-        return res.status(200).send(brand);
+        return res.status(200).send({brand});
     } catch (error) {
-        return res.status(500).send(error);
+        return res.status(500).send({error});
     }
 })
 
@@ -36,9 +36,9 @@ router.get('/:brand', async(req,res)=>{
 router.patch('/:id/edit', async(req,res)=>{
     try {
         const brand = await Brand.findByIdAndUpdate(req.params.id, req.body,{ new:true }).populate({ path:"productId" , populate:{ path:"categoryId" , populate:[{path:"parentId",select:{"name":1}},{path:"anscester",select:{"name":1}}]} });
-        return res.status(201).send(brand);
+        return res.status(201).send({brand});
     } catch (error) {
-        return res.status(500).send(error);
+        return res.status(500).send({error});
     }
 })
 
