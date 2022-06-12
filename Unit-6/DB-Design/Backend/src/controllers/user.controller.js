@@ -28,7 +28,7 @@ router.get('/:id', async(req,res)=>{
         const user = await User.findById(req.params.id).lean().exec()
         return res.status(200).send(user)
     } catch (error) {
-        return res.status(500).send(error)
+        return res.status(500).send({"message":error.message})  
     }
 })
 

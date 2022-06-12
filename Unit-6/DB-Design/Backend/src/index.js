@@ -16,10 +16,10 @@ app.use('/brand', BrandController)
 app.use('/review', ReviewController)
 app.use('/order', OrderController)
 
-app.listen(8000,async()=>{
+app.listen(8080,async()=>{
     try {
         await connect();
-        console.log('Listening on Port 8000 !')
+        console.log('Listening on Port 8080 !')
     } catch (error) {
         console.log(error)
     }
