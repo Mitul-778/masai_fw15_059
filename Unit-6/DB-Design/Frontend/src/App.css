@@ -13,3 +13,18 @@ thead{
 a{
   text-decoration: none;
 }
+
+img{
+  width: 60px;
+  height: 60px;
+}
+
+#order{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+h4{
+  margin-left: 600px;
+}

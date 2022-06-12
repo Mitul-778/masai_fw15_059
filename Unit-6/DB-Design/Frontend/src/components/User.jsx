@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 export const User = () =>{
     const[data,setData] = useState([]);
     useEffect(()=>{
-        axios.get('http://localhost:8000/users').then((res)=>setData(res.data)).catch((err)=>console.log(err))
+        axios.get('http://localhost:8080/users').then((res)=>setData(res.data.users)).catch((err)=>console.log(err))
     },[])
     return(
         <table id="tab">
