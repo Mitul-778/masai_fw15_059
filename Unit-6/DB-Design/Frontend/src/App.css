@@ -28,3 +28,22 @@ img{
 h4{
   margin-left: 600px;
 }
+
+#list{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: 200px,200px;
+  text-align: center;
+  width: 90%;
+  margin: 60px auto;
+}
+
+#product{
+  width: 250px;
+  height: 250px;
+}
+#price_rate{
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}

@@ -8,7 +8,7 @@ function App() {
     <>
     <nav style={{'display':"flex",'justifyContent':'center','gap':'100px'}}>
     <Link to={'/user'}>User</Link>
-    <Link to={'/product'}>Products</Link>
+    <Link to={'/product'}>Product</Link>
     <Link to={'/list'}>Listing</Link>
     </nav>
     <div className="App">
