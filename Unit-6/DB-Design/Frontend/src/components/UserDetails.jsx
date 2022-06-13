@@ -5,17 +5,17 @@ import { useParams } from "react-router-dom";
 export const UserDetails = () => {
   const [data, setData] = useState([]);
   const [orders, setOrder] = useState([]);
+  const[amount,setAmount]= useState(0);
   const { id } = useParams();
-  const { order,amount } = orders;
   
-
 
   useEffect(() => {
     async function getData(){
-        const res = await fetch(`http://localhost:8080/order/${id}`);
-        const d = await res.json();
-        setOrder(d)
-   }
+      const res = await fetch(`http://localhost:8080/order/${id}`);
+      const d = await res.json();
+      setOrder(d.order[0].productIds)
+      setAmount(d.amount)
+  }
    getData()
    async function getOrder(){
     const res = await fetch(`http://localhost:8080/users/${id}`);
@@ -23,7 +23,7 @@ export const UserDetails = () => {
     setData(d.user)
    }
    getOrder()
-  },[data,orders]);
+  },[]);
  
   return (
     <>
@@ -74,8 +74,8 @@ export const UserDetails = () => {
             </tr>
         </thead>
         <tbody>
-            {order[0].productIds.map((e)=>(
-                <tr>
+            {orders.map((e,i)=>(
+                <tr key={i}>
                     <td>{e.name}</td>
                     <td><img src={e.image} alt="" /></td>
                     <td>Rs.{e.price}</td>
