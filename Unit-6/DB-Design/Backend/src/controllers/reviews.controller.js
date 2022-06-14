@@ -22,7 +22,7 @@ router.post('/create', async(req,res)=>{
 
 router.get('/:id', async(req,res)=>{
     try {
-        const review = await Reviews.findById(req.params.id).populate({path:"productId"}).populate({path:"userId"}).lean().exec();
+        const review = await Reviews.find({productId:req.params.id}).populate({path:"productId"}).populate({path:"userId"}).lean().exec();
         return res.status(200).send({review});
     } catch (error) {
         return res.status(500).send({error});
