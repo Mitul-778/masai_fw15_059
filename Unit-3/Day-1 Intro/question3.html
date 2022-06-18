@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Q3</title>
+    <style>
+        button{
+            margin: 20px;
+            width: 100px;
+            height: 50px;
+            font-weight: bolder;
+            font-size: 16px;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        }
+        li{
+            font-size: 20px;
+            line-height: 40px;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+            width: 80%;
+            color: teal;
+            margin: 5px;
+            padding: 10px;
+        }
+    </style>
+  </head>
+  <body>
+    <button id="btn1" onclick="displayData(objData)">Objects</button>
+    <button id="btn2" onclick="displayData(arrData)">Arrays</button>
+    <button id="btn3" onclick="displayData(funData)">Functions</button>
+    <button id="btn4" onclick="displayData(strData)">Strings</button>
+    <button id="btn5" onclick="displayData(numData)">Numbers</button>
+    <button id="btn6" onclick="displayData(nullData)">Null</button>
+    <button id="btn7" onclick="displayData(undefinedData)">Undefined</button>
+    <ul></ul>
+  </body>
+</html>
+
+<script>
+
+var numData=[{
+    id:'#btn5',
+    btn:'2px solid yellow',
+    p1:"Numbers are primitive data type any it is a single or sequence of number from 0-9",
+    p2:"Number value can be assigned to a variable using equal-to(=) operator",
+    p3:'Just like strings numbers are immutable that is its value cannot be changed',
+    p4:'We can perform all the mathematical operation to the numbers',
+    p5:'We cannot perform math operation with numbers and strings Ex: 5 +"4"= 54'
+}]
+
+var objData=[{
+    id:'#btn1',
+    btn:'2px solid violet',
+    p1:'Objects are unordered collection of data in the form of key-value pairs.',
+    p2:'Objects are the combination of various primitive data structure.',
+    p3:'Objects are Mutable',
+    p4:'Objects are declared in curly braces i.e { }',
+    p5:'Syntax of object is var obj={name:"Masai"}.To access the elements inside the objects we use dot notation or bracket notation ex:obj.name'
+}]
+
+var arrData=[{
+    id:'#btn2',
+    btn:'2px solid indigo',
+    p1:'An Array is a Data Structure, which can store a fixed-size collection of elements of the same data type.',
+    p2:'Array is Mutable.',
+    p3:'We declare an array elements inside square brackets i.e; var array=[1,2,3,4]',
+    p4:'we can also access individual elements by their index i.e; array[0]==1',
+    p5:'We can also use arrays in nested form i.e 2D and 3D array'
+}]
+
+var funData=[{
+    id:'#btn3',
+    btn:'2px solid blue',
+    p1:'Function can be defined as a block of code which performs a task',
+    p2:'If we want to perform that task multiple times then we give a name to that function and call it multiple times',
+    p3:'It is defined using the keyword "function" and syntax is "function function_name()".',
+    p4:'We can also pass the parameters to the function',
+    p5:'After the execution of the function the answer is returned. If we used return in the middle it will break the function',
+}]
+
+var strData=[{
+    id:'#btn4',
+    btn:'2px solid green',
+    p1:'String is a primitive data type any it is sequence of characters written in quotes',
+    p2:'Strings value can be assigned to a variable using equal-to(=) operator',
+    p3:'Strings are immutable that is its value cannot be changed',
+    p4:'Since computer can understand numbers so there are ascii codes i.e charCodeAt',
+    p5:'Multiple strings can be concatenated using plus(+) operator'
+}]
+
+var nullData=[{
+    id:'#btn6',
+    btn:'2px solid orange',
+    p1:'Null is a Primitive data type.',
+    p2:'Null represents the intentional absence of the variable value',
+    p3:'Null is treated as false for boolean operation',
+    p4:'Syntax is var name=null. If we print the name i will give null',
+    p5:'In JavaScript null is treated as an object. We can check it by using typeof()'
+}]
+
+var undefinedData=[{
+    id:'#btn7',
+    btn:'2px solid red',
+    p1:'Undefined is a Prmitive data type',
+    p2:'A variable or object has an undefined value when no value is assigned.',
+    p3:'In JavaScript undefined is a falsy value when used in conditional expression',
+    p4:'For example if we declare var name; and if we try to print name we get undefined because no value is assigned',
+    p5:'Undefined is a token i.e if we check typeof() i will give undefined.'
+}]
+
+
+function displayData(data){
+    document.querySelector("ul").innerHTML=""
+    
+    data.map(function(el){
+
+        document.querySelector(el.id).style.border=el.btn
+
+        const l1=document.createElement("li");
+        l1.textContent=el.p1
+
+        var l2=document.createElement("li");
+        l2.textContent=el.p2
+
+        var l3=document.createElement("li");
+        l3.textContent=el.p3
+
+        var l4=document.createElement("li");
+        l4.textContent=el.p4
+        
+        var l5=document.createElement("li");
+        l5.textContent=el.p5
+
+        document.querySelector("ul").append(l1,l2,l3,l4,l5)
+    })
+}
+</script>
+

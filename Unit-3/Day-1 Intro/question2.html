@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q2</title>
+    <style>
+        button{
+            height: 100px;
+            width: 100px;
+            font-size: larger;
+            font-weight: bolder;
+            margin: 5% 30%;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="diceFun()">Throw Dice</button>
+</body>
+</html>
+
+<script>
+    function diceFun(){
+    var x=document.querySelector("button").textContent= Math.round(Math.random()*6)
+    if(x==1){
+        document.querySelector("button").style.color='yellow'
+        document.querySelector("button").style.border='1px solid yellow'
+    }
+    else if(x==6){
+        document.querySelector("button").style.color='green'
+        document.querySelector("button").style.border='1px solid green'
+    }
+    else{
+        document.querySelector("button").style.color='red'
+        document.querySelector("button").style.border='1px solid red'
+    }
+}
+</script>
