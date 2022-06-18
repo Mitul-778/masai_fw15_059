@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skill</title>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  const amar = {
+    name: "Amar",
+    city: "Goa",
+    skill: "sing",
+
+    amarSkill() {
+        return this.skill
+    },
+  };
+
+  const akbar = {
+    name: "Akbar",
+    city: "Mumbai",
+    skill: "Chef",
+
+    akbarSkill() {
+        return this.skill
+    },
+  };
+
+  const anthony = {
+    name: "Anthony",
+    city: "Kashmir",
+    skill: "Magician",
+
+    anthonySkill() {
+      return this.skill
+    },
+  };
+
+  let x = amar.amarSkill.call(anthony);
+  let y = amar.amarSkill.call(akbar);
+  console.log(`Amar skills: ${x} and ${y}`);
+
+  let a= akbar.akbarSkill.call(amar);
+  let b= akbar.akbarSkill.call(anthony);
+  console.log(`Akbar skills: ${a} and ${b}`);
+
+  let c= anthony.anthonySkill.call(amar);
+  let d= anthony.anthonySkill.call(akbar);
+  console.log(`Anthony skill: ${c} and ${d}`);
+</script>

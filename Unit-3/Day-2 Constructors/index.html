@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form</title>
+    <style>
+      td,
+      th {
+        width: 150px;
+        border: 1px solid gray;
+        text-align: center;
+        border-radius: 2px;
+      }
+      table {
+        margin: 10px;
+      }
+      input {
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input type="text" name="" id="name" placeholder="Enter Name" /><br />
+      <input type="number" name="" id="num" placeholder="Enter number" /><br />
+      <input type="text" id="city" placeholder="Enter City" /><br />
+      <input type="submit" value="submit" id="btn" /><br />
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Student Name</th>
+          <th>Student Number</th>
+          <th>Student City</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </body>
+</html>
+
+<script>
+  document.querySelector("form").addEventListener("submit", detailFun);
+  var details = JSON.parse(localStorage.getItem("userDetails")) || [];
+
+  function detailFun(event) {
+    event.preventDefault();
+
+    var name = document.querySelector("#name").value;
+    var number = document.querySelector("#num").value;
+    var city = document.querySelector("#city").value;
+
+    function studentCF(name, number, city) {
+      (this.student_name = name),
+        (this.student_num = number),
+        (this.student_city = city);
+    }
+
+    let x = new studentCF(name, number, city);
+    details.push(x);
+    localStorage.setItem("userDetails", JSON.stringify(details));
+    createTable(details);
+  }
+
+  function createTable(details) {
+    var a = 1;
+    document.querySelector("tbody").innerHTML = "";
+    details.map(function (el) {
+      var tr = document.createElement("tr");
+      var td1 = document.createElement("td");
+      td1.textContent = a++;
+
+      var td2 = document.createElement("td");
+      td2.textContent = el.student_name;
+
+      var td3 = document.createElement("td");
+      td3.textContent = el.student_num;
+
+      var td4 = document.createElement("td");
+      td4.textContent = el.student_city;
+
+      tr.append(td1, td2, td3, td4);
+      document.querySelector("tbody").append(tr);
+    });
+  }
+</script>
