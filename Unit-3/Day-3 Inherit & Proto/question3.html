@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>q3</title>
+  </head>
+  <body>
+    <p>
+      Use the .Prototype property available on constructor functions to add
+      custom methods to your Array constructor function. Add the following
+      methods 1.Pushing a new value to the array 2.Reversing the array and
+      returning it 3.Return first element from the array 4.printing the array in
+      Array format, not the object one.
+    </p>
+  </body>
+</html>
+
+<script>
+  let arr = new myArray(1, 2, 3, 4, 5, 6);
+  function myArray() {
+    Object.defineProperty(this, "length", {
+      writable: true,
+      enumerable: false,
+    });
+    for (let i = 0; i < arguments.length; i++) {
+      this[i] = arguments[i];
+      this.length = arguments.length;
+    }
+  }
+
+  myArray.prototype.મોકલો = function (x) {
+    let index = this.length;
+    this[index] = x;
+    this.length++;
+  };
+
+  myArray.prototype.ઊલટું = function (arguments) {
+    var array=[]
+    for(let i=arguments.length-1;i>=0;i--){
+      array.push(arguments[i]);
+    }
+    return array
+  };
+
+  myArray.prototype.પ્રથમ = function (arguments) {
+     return arguments[0]
+  };
+
+  arr.મોકલો(7);
+  let revArr=arr.ઊલટું(arr);
+  let firstElem=arr.પ્રથમ(arr);
+
+  console.log(Object.values(arr));
+  console.log(revArr);
+  console.log(firstElem)
+</script>

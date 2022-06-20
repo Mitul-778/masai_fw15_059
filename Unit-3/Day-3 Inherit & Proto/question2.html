@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>q2</title>
+  </head>
+  <body>
+    <p>
+      Create your custom Array constructor which should return an Array Object.
+      It should have the property as length depending upon the total no of
+      arguments passed to the constructor function. Whatever arguments are being
+      passed, add them as a key-value pair in our Array object. Here, the key
+      will be the index number, starting from zero.
+    </p>
+  </body>
+</html>
+
+<script>
+    let arr = new myArray(1,2,3,4,5,6);
+    function myArray(){
+        Object.defineProperty(this,'length',{
+            writable:true,
+            enumerable:false
+        })
+        for(let i=0;i<arguments.length;i++){
+            this[i]=arguments[i]
+            this.length=arguments.length
+        }
+    } 
+    console.log(arr)
+</script>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Q1</title>
+  </head>
+  <body>
+    <p>
+      Implement the inheritance model of your family both using Object.create().
+      Starting from your grandparents to your parents you. Create a two min
+      video explaining the prototype chain for the above example. Show
+      [[prototype]] object.
+    </p>
+  </body>
+</html>
+
+<script>
+    const grandparents={
+        grandParent:'Dadu'
+    }
+
+    const parent=Object.create(grandparents)
+    parent.name='Ashok'
+
+
+    const childs=Object.create(parent)
+    childs.me='Mitul'
+
+    
+    console.log(childs)
+</script>
