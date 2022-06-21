@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>McDonald's</title>
+    <style>
+      #foodDisplay {
+        display: flex;
+        gap: 150px;
+      }
+      img {
+        width: 30%;
+        height: 300px;
+        margin-top: 20px;
+      }
+      input {
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="food">
+      <input type="checkbox" name="burger" value="Burger" />
+      <label for="Burger"> Burger</label><br />
+      <input type="checkbox" name="pizza" value="Pizza" />
+      <label for="pizza"> Pizza</label><br />
+      <input type="checkbox" name="coffee" value="Coffee" />
+      <label for="coffee"> Coffee</label><br />
+      <input type="submit" value="PlaceOrder" />
+    </form>
+    <div id="foodDisplay">
+     
+    </div>
+  </body>
+</html>
+
+<script>
+  document.querySelector("form").addEventListener("submit", placeOrder);
+
+  function placeOrder(event) {
+    event.preventDefault();
+    document.querySelector("#foodDisplay").innerHTML=""
+    let status = "Open";
+
+    let order = document.querySelector("input[type='checkbox']:checked").value;
+
+    let food_promise = new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        if (status == "Open") {
+          if (order == "Burger") {
+            resolve(`${order} is Ready !!`);
+            var id = Math.round(Math.random() * 100);
+            var image = document.createElement("img");
+            image.src =
+              "https://b.zmtcdn.com/data/pictures/chains/3/19297493/121baafd54c85643ec6f204a5f27ec69_featured_v2.jpg?output-format=webp";
+            document.querySelector("#foodDisplay").append(image,`Order ID:${id}`);
+          } else if (order == "Pizza") {
+            resolve(`${order} is Ready !!`);
+            var id = Math.round(Math.random() * 100);
+            var image = document.createElement("img");
+            image.src =
+              "https://b.zmtcdn.com/data/pictures/1/19296121/b04c52d0c652b007e9f5637901d6855b_o2_featured_v2.jpg?output-format=webp";
+              document.querySelector("#foodDisplay").append(image,`Order ID:${id}`);
+          } else if (order=='Coffee') {
+            resolve(`${order} is Ready !!`);
+            var id = Math.round(Math.random() * 100);
+            var image = document.createElement("img");
+            image.src =
+              "https://b.zmtcdn.com/data/dish_photos/30b/6071ae7d4d741657d0aaf667a271b30b.jpg?output-format=webp";
+              document.querySelector("#foodDisplay").append(image,`Order ID:${id}`);
+          }
+        } else {
+          reject("McDonalds is Closed !!");
+        }
+      }, 5000);
+    });
+    food_promise.then(function (res) {
+      alert(res);
+      
+    });
+    food_promise.catch(function (err) {
+      console.log(err);
+    });
+  }
+</script>
