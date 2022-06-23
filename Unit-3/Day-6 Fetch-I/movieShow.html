@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Movie</title>
+    <style>
+      #container {
+        width: 96%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      #flex {
+        display: flex;
+        border: 1px solid gray;
+      }
+      img {
+        width: 50%;
+        height: 200px;
+        margin-right: 20px;
+      }
+      h4 {
+        width: 50%;
+      }
+      #con {
+        margin: 50px auto;
+        width: 15.2%;
+        display: flex;
+        border-radius: 5px;
+      }
+      #gif {
+        width: 50%;
+        margin: auto;
+        height: 400px;
+      }
+      #img-gif{
+        width: 100%;
+        height: 100%;
+      }
+      input,
+      button {
+        height: 40px;
+        border: 1px solid blue;
+      }
+      button {
+        border-left: 0;
+        background-color: white;
+        width: 200px;
+      }
+      body {
+        height: 100%;
+        background-color: black;
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Popcornclipart.svg/424px-Popcornclipart.svg.png");
+      }
+      #data,
+      h1 {
+        color: white;
+      }
+      h6 {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="con">
+      <input type="search" id="movie" placeholder="Search" /><br />
+      <button onclick="getData()"><i class="fa fa-search"></i></button>
+    </div>
+    <div id="container"></div>
+    <div id="gif"></div>
+  </body>
+</html>
+
+<script>
+  async function getData() {
+    let name = document.querySelector("#movie").value;
+    try {
+      let url = `https://www.omdbapi.com/?i=tt3896198&apikey=def7ff07&s=${name}`;
+      let res = await fetch(url);
+      let data = await res.json();
+      displayMovie(data);
+    } catch (err) {
+      noData();
+    }
+  }
+  function displayMovie(d) {
+    document.getElementById("gif").innerHTML="";
+    document.querySelector("#container").innerHTML = "";
+    document.querySelector("body").style.backgroundImage = "url()";
+    d.Search.forEach(function (el) {
+      var id = (Math.random() * (9 - 5 + 1) + 5).toFixed(1);
+      var rec = document.createElement("h6");
+
+      var div = document.createElement("div");
+      div.setAttribute("id", "data");
+      var div2 = document.createElement("div");
+      div2.setAttribute("id", "flex");
+
+      var title = document.createElement("h4");
+      title.textContent = `Movie: ${el.Title}`;
+
+      var date = document.createElement("p");
+      date.textContent = `Year: ${el.Year}`;
+
+      var rate = document.createElement("h5");
+      rate.textContent = `IMDB: ${id} ⋆⋆⋆⋆`;
+
+      var image = document.createElement("img");
+      image.setAttribute("src", el.Poster);
+
+      div.append(title, date, rate, rec);
+      div2.append(image, div);
+      document.querySelector("#container").append(div2);
+      if (id > 8.5) {
+        rec.textContent = "⋆ Recommended ⋆";
+      }
+    });
+  }
+  function noData() {
+    document.querySelector("body").style.backgroundImage = "url()";
+    document.querySelector("body").style.backgroundColor = "black";
+    var image = document.createElement("img");
+    image.setAttribute('id','img-gif')
+    image.src =
+      "https://cdn.dribbble.com/users/2353504/screenshots/7498453/media/6b9d2cecfe00f117222162cfd943e17d.gif";
+    document.getElementById("gif").append(image);
+  }
+</script>
