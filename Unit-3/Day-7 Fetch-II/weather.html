@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/6deb308963.js" crossorigin="anonymous"></script>
+    <title>Weather forecast</title>
+    
+    <style>
+      .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        height: 400px;
+        width: 500px;
+      }
+      .mapouter {
+        position: relative;
+        text-align: right;
+        height: 500px;
+        width: 600px;
+      }
+      #map {
+        display: flex;
+        gap: 50px;
+        width: 80%;
+        margin: auto;
+      }
+      input,
+      button {
+        margin: 20px;
+        height: 30px;
+      }
+      input{
+        width: 250px;
+      }
+      nav{
+          border: 1px solid red;
+          display: flex;
+          align-items: center;
+      }
+      i{
+          color: gray;
+      }
+      #map1{
+          display: flex;
+          width: 80%;
+          margin: auto;
+          justify-content: space-between;
+      }
+      #name{
+          text-align: center;
+          width: 125px;
+      }
+      img{
+          background-color:rgb(255, 255, 161);
+      }
+      i{
+        font-size: 20px;
+        margin-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+        <h1><i class="fas fa-cloud-moon-rain"></i>  Weather ForeCast</h1>
+      <input type="text" id="city" placeholder="Enter City..." />
+      <button onclick="getWeatherData()"> Search</button>
+    </nav>
+    <div id="map">
+      <div id="container"></div>
+      <div class="mapouter">
+        <div class="gmap_canvas">
+          <iframe
+            width="600"
+            height="500"
+            id="gmap_canvas"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+    <div id="map1"></div>
+  </body>
+</html>
+
+<script>
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=bb795f543220083ed215ad6836a08e5f`;
+  let cont = document.getElementById("container");
+  let iframe = document.getElementById("gmap_canvas");
+
+  async function getWeatherData() {
+    try {
+      let city = document.getElementById("city").value;
+      let res = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=bb795f543220083ed215ad6836a08e5f&units=metric`
+      );
+      let data = await res.json();
+      showData(data);
+    } catch (error) {
+      console.log(error);
+    }
+    sevenDay();
+  }
+
+  async function sevenDay() {
+    try {
+      let city = document.getElementById("city").value;
+      let res = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=7&appid=bb795f543220083ed215ad6836a08e5f&units=metric`
+      );
+      let data = await res.json();
+      displaySev(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function showData(d) {
+    console.log(d);
+    container.innerHTML = null;
+
+    let name = document.createElement("p");
+    name.innerHTML = `${d.name} <i class="fa-solid fa-location-dot"></i>`;
+
+    let temp = document.createElement("p");
+    temp.innerHTML = `Temperature : ${d.main.temp} °C <i class="fa-solid fa-temperature-full"></i>`;
+
+    let humid = document.createElement("p");
+    humid.innerHTML = `Humidity : ${d.main.humidity} <i class="fa-solid fa-temperature-low"></i>`;
+    
+
+
+    let pressure = document.createElement("p");
+    pressure.innerHTML = `Pressure : ${d.main.pressure} <i class="fa-solid fa-temperature-full"></i>`;
+
+    iframe.src = `https://maps.google.com/maps?q=${d.name}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+
+    let icon = document.createElement("div");
+    icon.textContent = d.weather.icon;
+    container.append(name, temp, humid, pressure, icon);
+  }
+  function displaySev(d) {
+      console.log(d)
+      document.querySelector("#map1").innerHTML=null
+    // let icon = `https://openweathermap.org/img/wn/02n@2x.png`;
+
+    var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    var i = 0;
+    d.list.map(function (el) {
+      let div = document.createElement("div");
+      div.setAttribute('id','name')
+
+      let day = document.createElement("p");
+      day.textContent = days[i++];
+
+      let image = document.createElement("img");
+      image.src = `https://openweathermap.org/img/wn/${el.weather[0].icon}@2x.png`;
+
+      let temp = document.createElement("p");
+      temp.textContent = `${el.main.temp_max} °C`;
+
+      let temp1 = document.createElement("p");
+      temp1.textContent = `${el.main.temp_min} °C`;
+
+      div.append(day, image, temp,temp1);
+      document.querySelector("#map1").append(div);
+    });
+  }
+</script>
