@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trending Movie</title>
+    <style>
+      #cont {
+        display: grid;
+        grid-template-columns: repeat(3, 12fr);
+        width: 90%;
+        margin: auto;
+        gap: 20px;
+      }
+      img {
+        width: 50%;
+        height: 200px;
+        margin-right: 20px;
+      }
+      #flex {
+        display: flex;
+        border: 1px solid black;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+          rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      }
+      h1{
+          text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+      <h1>Trending Movies</h1>
+    <div id="cont"></div>
+  </body>
+</html>
+
+<script>
+  async function popular() {
+    try {
+      let x = await fetch(
+        "https://api.themoviedb.org/3/movie/popular?api_key=2b44bbb5efbf3fbe882d482fcee14e97"
+      );
+      let data = await x.json();
+      display(data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  popular();
+  const display = (data) => {
+    console.log(data);
+    document.getElementById("cont").innerHTML = "";
+    data.forEach((el) => {
+      let div = document.createElement("div");
+      let div2 = document.createElement("div");
+      div2.setAttribute("id", "flex");
+
+      let image = document.createElement("img");
+      image.src = `https://image.tmdb.org/t/p/w500${el.poster_path}`;
+
+      var name = document.createElement("h2");
+      name.textContent = el.original_title;
+
+      var date = document.createElement("p");
+      date.textContent = el.release_date;
+
+      var rating = document.createElement("h4");
+      rating.textContent = el.vote_average + " " + "⋆⋆⋆⋆";
+
+      div.append(name, date, rating);
+      div2.append(image, div);
+
+      document.querySelector("#cont").append(div2);
+    });
+  };
+</script>
