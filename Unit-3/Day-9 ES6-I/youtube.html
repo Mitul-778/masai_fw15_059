@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youtube</title>
+    <script
+      src="https://kit.fontawesome.com/6deb308963.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      nav {
+        width: 96%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+      }
+      #one,
+      #thre,
+      #two {
+        display: flex;
+        gap: 40px;
+      }
+      #one > img {
+        height: 40px;
+        width: 150px;
+        margin-top: 10px;
+      }
+      #logo {
+        height: 50px;
+        width: 50px;
+      }
+      #grid,
+      #not,
+      #user {
+        height: 30px;
+        width: 50px;
+        margin-top: 10px;
+      }
+      #search {
+        height: 40px;
+        width: 400px;
+        margin-top: 10px;
+      }
+      button {
+        height: 40px;
+        width: 40px;
+        margin-top: 10px;
+      }
+      #cont {
+        /* border: 1px solid black; */
+        width: 96%;
+        margin: 20px auto;
+        display: flex;
+        height: 20px;
+        gap: 10px;
+      }
+      hr {
+        width: 96%;
+        margin: auto;
+      }
+      #menu {
+        width: 15%;
+        /* border: 1px solid red; */
+      }
+      #video {
+        width: 85%;
+        /* border: 1px solid blue; */
+      }
+      span {
+        margin-right: 30px;
+      }
+      h2 {
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        font-weight: 400;
+      }
+      span img {
+        height: 26px;
+      }
+      #video{
+          display: grid;
+          grid-template-columns: repeat(4,1fr);
+          gap: 20px;
+      }
+     img{
+         width: 310px;
+         height: 200px;
+     }
+     img:hover{
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      z-index: 1;
+      transform: scale(1.05);
+     }
+     div:hover{
+      cursor: pointer;
+     }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div id="one">
+        <h1><i id="bar" class="fa-solid fa-bars"></i></h1>
+        <img id="logo"
+          src="https://www.pngitem.com/pimgs/m/508-5089004_youtube-logo-png-images-download-youtube-new-logo.png"
+          alt=""
+        />
+      </div>
+      <div id="two">
+        <div style="display: flex">
+          <input type="search" id="search" placeholder="Search" /><br />
+          <button id="btn"><i class="fa fa-search"></i></button>
+        </div>
+        <h1><i class="fa-solid fa-microphone"></i></h1>
+      </div>
+      <div id="thre">
+        <img id="logo"
+          src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSw_QTpULQTpUuFa_tz4d9hFyLmxa8dS1wT_2AspyPUBdWuEjse"
+          alt=""
+        />
+        <img src="grid.svg" alt="" id="grid" />
+        <img src="not.svg" id="not" alt="" />
+        <img src="user.svg" id="user" alt="" />
+      </div>
+    </nav>
+    <hr />
+    <div id="cont">
+      <div id="menu">
+        <div id="home">
+          <h2>
+            <span><i class="fa-solid fa-house"></i></span> Home
+          </h2>
+        </div>
+        <div>
+          <h2>
+            <span><i class="fa-regular fa-compass"></i></span> Explore
+          </h2>
+        </div>
+        <div>
+          <h2>
+            <span><i class="fa-solid fa-table-list"></i></span> Subscription
+          </h2>
+        </div>
+        <hr />
+        <div>
+          <h2>
+            <span><i class="fa-solid fa-clapperboard"></i></span> Library
+          </h2>
+        </div>
+        <div>
+          <h2>
+            <span><i class="fa-solid fa-clock-rotate-left"></i></span> History
+          </h2>
+        </div>
+        <div>
+          <h2>
+            <span><i class="fa-brands fa-youtube"></i></span> Videos
+          </h2>
+        </div>
+        <div>
+          <h2>
+            <span><i class="fa-regular fa-clock"></i></span> Watch Later
+          </h2>
+        </div>
+        <div>
+          <h2>
+            <span><i class="fa-solid fa-thumbs-up"></i></span> Liked videos
+          </h2>
+        </div>
+        <div>
+          <h2>
+            <span><i class="fa-solid fa-angle-down"></i></span> Show More
+          </h2>
+        </div>
+        <hr />
+      </div>
+      <div id="video"></div>
+    </div>
+  </body>
+</html>
+
+<script src="youtube.js" type="module">
+ 
+
+</script>
