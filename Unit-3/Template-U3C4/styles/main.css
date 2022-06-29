@@ -1,0 +1,34 @@
+#container{
+    display: flex;
+}
+#sidebar{
+    border: 1px solid black;
+    flex: 2;
+}
+#sidebar > div , #sidebar > input {
+    margin: 10px 0;
+    border: 1px solid black;
+    width: 250px;
+    height: 30px;
+}
+#main{
+    border: 1px solid red;
+    flex: 8;
+}
+#news{
+    display: flex;
+    gap: 10px;
+    margin: auto 40px;
+}
+img{
+    width: 600px;
+    height: 400px;
+    margin: 10px 5px;
+}
+#news > div {
+    width: 300px;
+    border: 1px solid teal;
+    height: 400px;
+    font-size: 20px;
+    margin: 10px 5px;
+}

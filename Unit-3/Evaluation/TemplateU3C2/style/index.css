@@ -1,0 +1,25 @@
+#navbar{
+    width:98% ;
+    margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    height: 40px;
+    border: 1px solid gray;
+    
+}
+#c{
+    text-decoration: underline;
+}
+#navbar > div{
+    margin: 10px;
+}
+#menu{
+    width: 98%;
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 50px;
+}
+img{
+    width: 260px;
+}
